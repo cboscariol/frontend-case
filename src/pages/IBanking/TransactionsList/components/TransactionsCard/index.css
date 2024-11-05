@@ -1,0 +1,23 @@
+.transactions__card {
+    border: 1px solid var(--color-light-gray);
+    padding: 32px 16px 0 16px;
+    border-radius: 16px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.transactions__style {
+    width: 33px;
+    height: 15px;
+    border-right: 1px solid var(--color-light-gray);
+    margin-left: 32px;
+}
+
+.top {
+    margin-top: 8px;
+}
+
+.botton {
+    margin-bottom: 8px;
+}
+

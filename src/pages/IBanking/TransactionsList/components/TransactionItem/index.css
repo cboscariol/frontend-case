@@ -1,0 +1,40 @@
+.transaction__item li {
+  list-style: none;
+}
+
+.transaction__item div {
+  display: grid;
+  grid-template-columns: 0.3fr 2fr 2fr 2fr 1fr;
+  margin-bottom: 24px;
+}
+
+.transaction__item img {
+    align-self: center;
+}
+
+.transaction__item {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  color: var(--color-text-default)
+}
+
+.transaction__item span {
+  font-weight: 900;
+  text-align: right;
+  max-width: 200px;
+  align-self: center;
+}
+
+.transaction__entry {
+  color: var(--color-light-blue);
+}
+
+.transaction__reserse {
+  text-decoration: line-through;
+}
+
+.transaction__label__date {
+    color: var(--color-gray);
+}

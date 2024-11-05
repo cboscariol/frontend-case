@@ -1,0 +1,35 @@
+.transaction__list__container {
+  max-width: 1032px;
+  margin: 60px auto;
+}
+
+.transactions__list ul {
+  list-style: none;
+}
+
+.transactions__list h3 {
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 20px;
+  text-align: left;
+}
+
+.transactions__header__infos {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--color-text-default);
+}
+
+.transactions__header__infos span {
+  font-weight: 900;
+}
+
+.transactions__header__infos p {
+  font-weight: 400;
+}
+
+.transaction__list__action__buttons {
+  display: flex;
+  justify-content: space-between;
+}
