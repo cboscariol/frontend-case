@@ -93,11 +93,11 @@ function Todo() {
             )}
           </ul>
           <ul>
-            {filteredItems.map((item, i) => (
+            {filteredItems.map((item) => (
               <li key={item.id}>
                 <div className="todo__content">
                   <h3>
-                    {i + 1}.{item.title} {item.required ? "*" : ""}
+                    {item.ref}.{item.title} {item.required ? "*" : ""}
                     <span data-type={item.status}>{item.status}</span>
                   </h3>
                   <p>{item.description}</p>
@@ -122,7 +122,10 @@ function Todo() {
                         )
                       }
                     >
-                      change to<strong> <u>{item.status === "done" ? "pending" : "done"}</u>
+                      change to
+                      <strong>
+                        {" "}
+                        <u>{item.status === "done" ? "pending" : "done"}</u>
                       </strong>
                     </button>
                   </div>
