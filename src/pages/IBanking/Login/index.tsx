@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, useEffect } from "react";
+import { useState, ChangeEvent, useEffect, FormEvent } from "react";
 import logoFullImage from "../../../assets/logo-full.svg";
 import arrowRightImage from "../../../assets/arrow-right.svg";
 
@@ -21,7 +21,16 @@ function Login() {
 
   const handleChangeCPF = (e: ChangeEvent<HTMLInputElement>) => {
     setShowError(false);
-    setCpf(e.target.value);
+    let value = e.target.value;
+    value = value.replace(/\D/g, "");
+
+    if (value.length <= 11) {
+      value = value.replace(/(\d{3})(\d)/, "$1.$2");
+      value = value.replace(/(\d{3})(\d)/, "$1.$2");
+      value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    }
+    e.target.value = value;
+    setCpf(value);
   };
 
   const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
@@ -29,14 +38,18 @@ function Login() {
     setPassword(e.target.value);
   };
 
-  const handleAuth = async () => {
-    if (!cpf || !password || cpf !== "35819357833" || password !== "123456") {
+  const handleAuth = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!cpf || !password) {
       setShowError(true);
       return;
     }
+
+    const cpfSanitized = cpf.replace(/\D/g, "");
+
     try {
       const response = await autorization({
-        cpf,
+        cpf: cpfSanitized,
         password,
       });
 
@@ -45,7 +58,7 @@ function Login() {
         navigate("/transactions-list");
       }
     } catch (error) {
-      console.log(error);
+      setShowError(true);
     }
   };
 
@@ -53,18 +66,28 @@ function Login() {
     <main id="login">
       <img src={logoFullImage} alt="Cora" title="Cora" />
       <h1>Fazer LogIn</h1>
-      <input id="cpf" placeholder="Insira seu CPF" onChange={handleChangeCPF} />
-      <input
-        id="password"
-        placeholder="Digite sua senha"
-        onChange={handleChangePassword}
-        type="password"
-      />
-      {showError && <p>Campos obrigatórios / cpf ou senha invalidos</p>}
-      <button onClick={handleAuth}>
-        Continuar
-        <img src={arrowRightImage} />
-      </button>
+      <form>
+        <input
+          id="cpf"
+          placeholder="Insira seu CPF"
+          onChange={handleChangeCPF}
+          value={cpf}
+          maxLength={14}
+        />
+        <input
+          id="password"
+          placeholder="Digite sua senha"
+          onChange={handleChangePassword}
+          type="password"
+          value={password}
+          maxLength={6}
+        />
+        {showError && <p>Campos obrigatórios / cpf ou senha inválidos</p>}
+        <button onClick={handleAuth}>
+          Continuar
+          <img src={arrowRightImage} />
+        </button>
+      </form>
     </main>
   );
 }
