@@ -1,7 +1,19 @@
 * {
+  --color-main: #fe3e6d;
+  --color-gray: #6b7076;
+  --color-light-gray: #dfdfdf;
+  --color-error: #ee3636;
+  --color-success: #04aa6d;
+  --color-dark-main: #d4265a;
+  --color-white: #ffffff;
+  --color-lighter-gray: #f0f4f8;
+  --color-light-blue: #1A93DA;
+  --color-text-default: #3B3B3B;
+
   margin: 0;
   padding: 0;
   border: 0;
   outline: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
