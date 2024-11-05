@@ -2,9 +2,18 @@ const express = require("express");
 const db = require("./db/transactions.json");
 const user = require("./db/user.json");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const port = 3000;
 const app = express();
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization", "token"],
+  })
+);
 
 app.use(bodyParser.json());
 
@@ -26,7 +35,7 @@ app.post("/auth", (req, res) => {
 app.get("/list", (req, res) => {
   const token = req.headers.token;
 
-  if (!token || token === user.token) return res.sendStatus(401);
+  if (!token) return res.sendStatus(401);
 
   return res.json(db);
 });
