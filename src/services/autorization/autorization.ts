@@ -12,8 +12,8 @@ type IAuthData = {
 }
 
 
-const autorization = async (data: IAuthData): Promise<IAuthResponse> => {
-  const response = await Api.post({
+const autorization = async (data: IAuthData) => {
+  const response = await Api.post<IAuthResponse['data'], IAuthData>({
     url: `${BASE_URL}/auth`,
     headers: {
       'Content-Type': 'application/json',
@@ -21,7 +21,7 @@ const autorization = async (data: IAuthData): Promise<IAuthResponse> => {
     data
   });
 
-  return response as IAuthResponse;
+  return response;
 };
 
 export default autorization;

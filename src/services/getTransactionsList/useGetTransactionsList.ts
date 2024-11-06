@@ -1,7 +1,7 @@
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import getTransactionsList from "./getTransactionsList";
 
-export const useGetTransactionsList = (): UseQueryResult<any> => {
+export const useGetTransactionsList = () => {
   const result = useQuery({
     queryKey: ["transactionsList"],
     queryFn: () => getTransactionsList(),
