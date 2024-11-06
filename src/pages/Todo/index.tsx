@@ -38,7 +38,6 @@ function Todo() {
     const editedItems: ITodoElements[] = [];
 
     for (const element of items) {
-      // for-of is simpler
       if (element.id === id) {
         editedItems.push({
           ...element,
