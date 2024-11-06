@@ -7,9 +7,11 @@ import autorization from "../../../services/autorization/autorization";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [cpf, setCpf] = useState("");
-  const [password, setPassword] = useState("");
-  const [showError, setShowError] = useState(false);
+  const [userData, setUserData] = useState({
+    cpf: "",
+    password: "",
+  });
+  const [showError, setShowError] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,7 +22,7 @@ function Login() {
   }, [navigate]);
 
   const handleChangeCPF = (e: ChangeEvent<HTMLInputElement>) => {
-    setShowError(false);
+    setShowError('');
     let value = e.target.value;
     value = value.replace(/\D/g, "");
 
@@ -30,27 +32,27 @@ function Login() {
       value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
     }
     e.target.value = value;
-    setCpf(value);
+    setUserData({ ...userData, cpf: value });
   };
 
   const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
-    setShowError(false);
-    setPassword(e.target.value);
+    setShowError('');
+    setUserData({ ...userData, password: e.target.value });
   };
 
   const handleAuth = async (e: FormEvent) => {
     e.preventDefault();
-    if (!cpf || !password) {
-      setShowError(true);
+    if (!userData.cpf || !userData.password) {
+      setShowError("Campos obrigatórios");
       return;
     }
 
-    const cpfSanitized = cpf.replace(/\D/g, "");
+    const cpfSanitized = userData.cpf.replace(/\D/g, "");
 
     try {
       const response = await autorization({
         cpf: cpfSanitized,
-        password,
+        password: userData.password,
       });
 
       if (response.data.token) {
@@ -58,7 +60,7 @@ function Login() {
         navigate("/transactions-list");
       }
     } catch (error) {
-      setShowError(true);
+      setShowError('Dados incorretos');
     }
   };
 
@@ -71,7 +73,7 @@ function Login() {
           id="cpf"
           placeholder="Insira seu CPF"
           onChange={handleChangeCPF}
-          value={cpf}
+          value={userData.cpf}
           maxLength={14}
         />
         <input
@@ -79,10 +81,10 @@ function Login() {
           placeholder="Digite sua senha"
           onChange={handleChangePassword}
           type="password"
-          value={password}
+          value={userData.password}
           maxLength={6}
         />
-        {showError && <p>Campos obrigatórios / cpf ou senha inválidos</p>}
+        <p>{showError}</p>
         <button onClick={handleAuth}>
           Continuar
           <img src={arrowRightImage} />

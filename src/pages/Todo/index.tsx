@@ -25,13 +25,9 @@ function Todo() {
   );
 
   const handleDeleteTask = (id: string) => {
-    const editedItems: ITodoElements[] = [];
+    let editedItems: ITodoElements[] = [];
 
-    items.forEach((item) => {
-      if (item.id !== id) {
-        editedItems.push(item);
-      }
-    });
+    editedItems = items.filter((item) => item.id !== id);
 
     setItems(editedItems);
   };
@@ -86,7 +82,7 @@ function Todo() {
             <button type="submit">buscar</button>
           </form>
           <ul className="todo__list">
-            {items.length === 0 && (
+            {filteredItems.length === 0 && (
               <span>
                 <strong>Ops!!!</strong> Nenhum resultado foi encontrado
               </span>
