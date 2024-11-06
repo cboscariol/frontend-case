@@ -1,5 +1,5 @@
 import CoraLogo from "../../assets/logo.svg";
-import './Default404.css'
+import './index.css'
 
 function Default404() {
   return (

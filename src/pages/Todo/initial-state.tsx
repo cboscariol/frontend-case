@@ -160,12 +160,32 @@ export const TODO_LIST = [
         para a vaga.
         <br />
         <br />
-        <strong>Important:</strong> Encontrou algo? Crie novas tasks nessa lista
+        <strong>Importante:</strong> Encontrou algo? Crie novas tasks nessa lista
         de to-dos, para conseguirmos te avaliar de uma forma mais assertiva.
         ObrigadaUm &#128640;
       </>
     ),
-    status: "pending",
+    status: "done",
+    required: false,
+  },
+  {
+    id: "be4f2532-aca4-46c8-84b8-c9fe41d7fb7c",
+    ref: "8",
+    title: "Extra",
+    description: (
+      <>
+        1. DONE - Novo filtro "Todos" na tela de transações.
+        <br />
+        2. DONE - Logout.
+        <br />
+        3. DONE - Validação do formuário de login com mensagens de erro e máscara de CPF
+        <br />
+        4. DESEJÁVEL - Testes unitários.
+        <br />
+        5. DESEJÁVEL - Gerenciar autenticaçao via cookies
+      </>
+    ),
+    status: "done",
     required: false,
   },
 ];

@@ -7,25 +7,24 @@ import { getDateAndTime } from "../../../../../utils/getDateAndTime/getDateAndTi
 import { formatAmount } from "../../../../../utils/formatAmount/formatAmount";
 
 function TransactionItem({ item }: Readonly<{ item: ITransactionItem }>) {
-  
-    const getTransactionsStyles = {
-        ENTRY: {
-            icon: ENTRY_ARROW,
-            className: "transaction__entry",
-            amountSymbol: "+",
-        },
-        EXIT: {
-            icon: EXIT_ARROW,
-            className: "transaction__exit",
-            amountSymbol: "-",
-        },
-        REVERSE: {
-            icon: REVERSE_ARROW,
-            className: "transaction__reserse",
-            amountSymbol: "",
-        },
-    };
-  
+  const getTransactionsStyles = {
+    ENTRY: {
+      icon: ENTRY_ARROW,
+      className: "transaction__entry",
+      amountSymbol: "+",
+    },
+    EXIT: {
+      icon: EXIT_ARROW,
+      className: "transaction__exit",
+      amountSymbol: "-",
+    },
+    REVERSE: {
+      icon: REVERSE_ARROW,
+      className: "transaction__reserse",
+      amountSymbol: "",
+    },
+  };
+
   return (
     <li className="transaction__item">
       <div>
@@ -37,9 +36,13 @@ function TransactionItem({ item }: Readonly<{ item: ITransactionItem }>) {
           {item.name}
         </p>
         <p className="transaction__label__date">{item.label}</p>
-        <p className="transaction__label__date">{getDateAndTime(item.dateEvent)}</p>
+        <p className="transaction__label__date">
+          {getDateAndTime(item.dateEvent)}
+        </p>
         <span className={getTransactionsStyles[item.transactionType].className}>
-            {getTransactionsStyles[item.transactionType].amountSymbol} {formatAmount(item.amount)}</span>
+          {getTransactionsStyles[item.transactionType].amountSymbol}{" "}
+          {formatAmount(item.amount)}
+        </span>
       </div>
     </li>
   );
