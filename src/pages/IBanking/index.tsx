@@ -1,7 +1,2 @@
-import Login from "./Login";
-
-function IBanking() {
-  return <Login />;
-}
-
-export default IBanking;
+export { default as Login } from "./Login";
+export { default as TransactionsList } from "./TransactionsList";

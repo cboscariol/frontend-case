@@ -21,7 +21,7 @@ function Home() {
                     <a href="/to-do">TO-DO LIST</a>
                 </li>
                 <li>
-                    <a href="/ibanking">IBANKING</a>
+                    <a href="/login">IBANKING</a>
                 </li>
             </ul>
         </div>

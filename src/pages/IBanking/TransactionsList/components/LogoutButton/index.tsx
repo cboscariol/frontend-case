@@ -6,7 +6,7 @@ function LogoutButton() {
 
   const handleLogout = () => {
     localStorage.removeItem("auth");
-    navigate("/ibanking");
+    navigate("/login");
   };
 
   return (

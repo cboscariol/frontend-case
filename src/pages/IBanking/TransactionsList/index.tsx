@@ -1,7 +1,7 @@
 import "./index.css";
 import TransactionItem from "./components/TransactionItem";
 import TransactionsCard from "./components/TransactionsCard";
-import { formatDate } from "../../../utils/formatDateTransactionsList/formatDateTransactionsList";
+import { getDayAndMonth } from "../../../utils/getDayAndMonth/getDayAndMonth";
 import FilterButton from "./components/FIlterButton";
 import { useState, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,7 @@ function TransactionsList() {
   useEffect(() => {
     const authToken = localStorage.getItem("auth");
     if (!authToken) {
-      navigate("/ibanking");
+      navigate("/login");
     }
   }, [navigate]);
 
@@ -30,7 +30,7 @@ function TransactionsList() {
   const filteredTransactions = useMemo(() => {
     if (!transactionsList) return [];
 
-    return transactionsList.data.results.reduce((acc: any[], transaction: ITransaction) => {
+    return transactionsList.data.results.reduce((acc: ITransaction[], transaction: ITransaction) => {
       const filteredItems = transaction.items?.filter((item: ITransactionItem) => {
         if (filterType === "ALL") return true;
         return item.entry === filterType;
@@ -53,14 +53,13 @@ function TransactionsList() {
     return formatAmount(total);
   };
 
-  const Transaction = ({ transaction }: any) => {
-    console.log("transaction",transaction);
+  const Transaction = ({ transaction }: { transaction: ITransaction }) => {
     const dailyBalance = calculateDailyBalance(transaction.items);
 
     return (
       <div className="transactions__list">
         <div className="transactions__header__infos">
-          <h3>{formatDate(transaction.date)}</h3>
+          <h3>{getDayAndMonth(transaction.date)}</h3>
           <p>
             saldo do dia <span>{dailyBalance}</span>
           </p>
