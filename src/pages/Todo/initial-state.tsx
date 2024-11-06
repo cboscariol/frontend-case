@@ -171,7 +171,7 @@ export const TODO_LIST = [
   {
     id: "be4f2532-aca4-46c8-84b8-c9fe41d7fb7c",
     ref: "8",
-    title: "Extra",
+    title: "Extra 2.0",
     description: (
       <>
         1. DONE - Novo filtro "Todos" na tela de transações.
@@ -180,7 +180,7 @@ export const TODO_LIST = [
         <br />
         3. DONE - Validação do formuário de login com mensagens de erro e máscara de CPF
         <br />
-        4. DESEJÁVEL - Testes unitários.
+        4. DONE - Testes unitários.
         <br />
         5. DESEJÁVEL - Gerenciar autenticaçao via cookies
       </>
