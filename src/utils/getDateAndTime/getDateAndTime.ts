@@ -1,4 +1,4 @@
-export const sanitizeDate = (date: Date) => {
+export const getDateAndTime = (date: Date) => {
     const formattedDate = new Date(date)
       .toLocaleDateString("pt-BR", {
         day: "2-digit",
